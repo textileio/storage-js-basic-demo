@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# Near Storage Basic Demo
+
+Sign in with [NEAR] and start storing data on Filecoin!
+
+[Live Demo available on GitHub Pages](https://textileio.github.io/near-storage-basic-demo)
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
