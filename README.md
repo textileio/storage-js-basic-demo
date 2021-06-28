@@ -1,6 +1,6 @@
 # Near Storage Basic Demo
 
-Sign in with [NEAR] and start storing data on Filecoin!
+Sign in with [NEAR](https://near.org) and start storing data on Filecoin!
 
 [Live Demo available on GitHub Pages](https://textileio.github.io/near-storage-basic-demo)
 

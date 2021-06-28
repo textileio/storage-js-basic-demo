@@ -32,7 +32,7 @@ async function initConnection() {
   // Needed to access wallet
   const walletConnection = new WalletConnection(near, null);
 
-  const api = await init(walletConnection)
+  const api = await init(walletConnection, { contractName: 'filecoin-bridge-edge' })
 
   // Load in account data
   let currentUser;
