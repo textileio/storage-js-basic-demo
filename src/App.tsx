@@ -60,7 +60,7 @@ const App = ({ api, currentUser }: Props): ReactElement => {
   };
 
   const signIn = () => {
-    api.requestSignIn('Textile Near Storage Demo');
+    api.requestSignIn({});
   };
 
   const signOut = () => {
