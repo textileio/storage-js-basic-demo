@@ -1,11 +1,10 @@
 # Near Storage Basic Demo
 
-Sign in with [NEAR](https://near.org) and start storing data on Filecoin!
+Sign in with [NEAR](https://near.org) and start storing data on [Filecoin](https://filecoin.io) via Textile's [`@textile/near-storage`](https://github.com/textileio/near-storage-js) SDK!
 
 [Live Demo available on GitHub Pages](https://textileio.github.io/near-storage-basic-demo)
 
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It provides a minimal demo/example for integrating `@textile/near-storage` into a React-based app. No experience with NEAR smart contracts or blockchain required.
 
 ## Available Scripts
 
