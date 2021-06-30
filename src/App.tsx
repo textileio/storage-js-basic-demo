@@ -26,9 +26,9 @@ const App = ({ api, currentUser }: Props): ReactElement => {
 
   const onUpload = (file: File) => {
     api.store(file)
-      .then(({ request }) => {
+      .then((request) => {
         setUploads([...uploads, request])
-        alert(`Your is available via IPFS:\n${request.cid["/"]}`)
+        alert(`Your file is available via IPFS:\n${request.cid["/"]}`)
       })
       .catch((err: Error) => alert(err.message));
   }
@@ -39,6 +39,7 @@ const App = ({ api, currentUser }: Props): ReactElement => {
         .then(({ request }) => {
           alert(`Your file status is currently: "${Status[request.status_code]}"!`)
         })
+        .catch((err: Error) => alert(err.message));
     } else {
       console.warn("no 'active' file, upload a file first")
     }
