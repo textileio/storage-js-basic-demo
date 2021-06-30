@@ -3,7 +3,7 @@ import { useState, ReactElement, useEffect } from 'react';
 import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
-import { RequestStatus, API } from "@textile/near-storage"
+import { Status, API, Request } from "@textile/near-storage"
 
 interface Props {
   api: API
@@ -12,13 +12,8 @@ interface Props {
   }
 }
 
-interface UploadInfo {
-  id: string
-  cid: string
-}
-
 const App = ({ api, currentUser }: Props): ReactElement => {
-  const [uploads, setUploads] = useState<Array<UploadInfo>>([]);
+  const [uploads, setUploads] = useState<Array<Request>>([]);
   const [deposit, setDeposit] = useState<boolean>(false);
 
   useEffect(() => {
@@ -31,13 +26,9 @@ const App = ({ api, currentUser }: Props): ReactElement => {
 
   const onUpload = (file: File) => {
     api.store(file)
-      .then(({ id, cid }) => {
-        const u: UploadInfo = {
-          id: id,
-          cid: cid["/"]
-        }
-        setUploads([...uploads, u])
-        alert(`Your file is already on IPFS:\n${u.cid}`)
+      .then(({ request }) => {
+        setUploads([...uploads, request])
+        alert(`Your is available via IPFS:\n${request.cid["/"]}`)
       })
       .catch((err: Error) => alert(err.message));
   }
@@ -45,8 +36,8 @@ const App = ({ api, currentUser }: Props): ReactElement => {
   const onStatus = (id: string) => {
     if (id) {
       api.status(id)
-        .then((res) => {
-          alert(`Your file status is currently: "${RequestStatus[res.status_code]}"!`)
+        .then(({ request }) => {
+          alert(`Your file status is currently: "${Status[request.status_code]}"!`)
         })
     } else {
       console.warn("no 'active' file, upload a file first")
@@ -97,13 +88,13 @@ const App = ({ api, currentUser }: Props): ReactElement => {
           </button>
           <br />
           {uploads && <h2>Your uploads</h2>}
-          {uploads.map((u: UploadInfo) => {
+          {uploads.map((u: Request) => {
             return <p>
-              {u.cid}
+              {u.cid["/"]}
               <br />
               <button type="button" name="copy" onClick={(e) => {
                 e.preventDefault();
-                navigator.clipboard.writeText(u.cid)
+                navigator.clipboard.writeText(u.cid["/"])
               }}>
                 Copy CID
               </button>
