@@ -8,7 +8,7 @@ export default function Welcome(): ReactElement {
       </p>
       <p>
           This is version 0 of the demo app. You can deposit and release funds,
-          query for the status of a "file" or deal, and more. This is a beta release demo, do not store personal, encrypted, or illegal data. Data will not be available permanently on either Filecoin or IPFS. See the <a href="https://near.storage/terms" target="_blank">terms of service</a> before using the demo.
+          query for the status of a "file" or deal, and more. This is a beta release demo, do not store personal, encrypted, or illegal data. Data will not be available permanently on either Filecoin or IPFS. See the <a href="https://near.storage/terms" target="_blank" rel="noreferrer">terms of service</a> before using the demo.
       </p>
       <p>
           Go ahead and sign in to try it out!
