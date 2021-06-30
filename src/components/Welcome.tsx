@@ -4,7 +4,7 @@ export default function Welcome(): ReactElement {
   return (
     <div>
       <p>
-          This app demonstrates the client-side usage of <a href="https://near.storage" target="_blank">the NEAR to Filecoin bridge</a>, allowing <a href="https://near.org" target="_blank">NEAR</a> users to store data on the <a href="https://filecoin.io" target="_blank">Filecoin</a> network. 
+          This app demonstrates the client-side usage of <a href="https://near.storage" target="_blank" rel="noreferrer">the NEAR to Filecoin bridge</a>, allowing <a href="https://near.org" target="_blank" rel="noreferrer">NEAR</a> users to store data on the <a href="https://filecoin.io" target="_blank" rel="noreferrer">Filecoin</a> network. 
       </p>
       <p>
           This is version 0 of the demo app. You can deposit and release funds,
