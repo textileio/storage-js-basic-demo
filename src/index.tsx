@@ -32,7 +32,7 @@ async function initConnection() {
   // Needed to access wallet
   const walletConnection = new WalletConnection(near, null);
 
-  const api = await init(walletConnection, { contractName: 'filecoin-bridge-edge' })
+  const api = await init(walletConnection.account(), { contractId: 'filecoin-bridge-edge.testnet' })
 
   // Load in account data
   let currentUser;
@@ -43,14 +43,15 @@ async function initConnection() {
     };
   }
 
-  return { currentUser, api }
+  return { currentUser, api, walletConnection }
 }
 
 window.nearInitPromise = initConnection()
-  .then(({ api, currentUser }) => {
+  .then(({ api, currentUser, walletConnection }) => {
     ReactDOM.render(
       <App
         api={api}
+        walletConnection={walletConnection}
         currentUser={currentUser}
       />,
       document.getElementById('root')
