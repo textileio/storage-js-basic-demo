@@ -3,16 +3,18 @@ import { useState, ReactElement, useEffect } from 'react';
 import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
-import { Status, API, Request } from "@textile/near-storage"
+import { Status, API, Request, requestSignIn } from "@textile/near-storage"
+import { WalletConnection } from 'near-api-js';
 
 interface Props {
   api: API
   currentUser?: {
     accountId: string
-  }
+  },
+  walletConnection: WalletConnection
 }
 
-const App = ({ api, currentUser }: Props): ReactElement => {
+const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
   const [uploads, setUploads] = useState<Array<Request>>([]);
   const [deposit, setDeposit] = useState<boolean>(false);
 
@@ -52,11 +54,11 @@ const App = ({ api, currentUser }: Props): ReactElement => {
   };
 
   const signIn = () => {
-    api.requestSignIn({});
+    requestSignIn(walletConnection, {});
   };
 
   const signOut = () => {
-    api.signOut();
+    walletConnection.signOut();
     window.location.replace(window.location.origin + window.location.pathname);
   };
 
