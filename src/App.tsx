@@ -30,7 +30,7 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
     api.store(file)
       .then((request) => {
         setUploads([...uploads, request])
-        alert(`Your file is available via IPFS:\n${request.cid["/"]}`)
+        alert(`IPFS CID:\n${request.cid["/"]}`)
       })
       .catch((err: Error) => alert(err.message));
   }
@@ -39,7 +39,7 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
     if (id) {
       api.status(id)
         .then(({ request }) => {
-          alert(`Your file status is currently: "${Status[request.status_code]}"!`)
+          alert(`Filecoin deal status: "${Status[request.status_code]}"!`)
         })
         .catch((err: Error) => alert(err.message));
     } else {
