@@ -16,6 +16,7 @@ interface Props {
 
 const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
   const [uploads, setUploads] = useState<Array<Request>>([]);
+  const [uploading, setUploading] = useState<boolean>(false);
   const [deposit, setDeposit] = useState<boolean>(false);
 
   useEffect(() => {
@@ -27,12 +28,17 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
   const accountId = currentUser && currentUser.accountId
 
   const onUpload = (file: File) => {
+    setUploading(true)
     api.store(file)
       .then((request) => {
         setUploads([...uploads, request])
+        setUploading(false)
         alert(`IPFS CID:\n${request.cid["/"]}`)
       })
-      .catch((err: Error) => alert(err.message));
+      .catch((err: Error) => {
+        setUploading(false)
+        alert(err.message)
+      });
   }
 
   const onStatus = (id: string) => {
@@ -77,7 +83,7 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
       {accountId
         ? (<div>
           <Form onSubmit={onSubmit} />
-          {deposit ? <Upload onSubmit={onUpload} /> : null}
+          {deposit ? <Upload onSubmit={onUpload} inProgress={uploading} /> : null}
           <button type="button" name="release" onClick={(e) => {
             e.preventDefault();
             api.releaseDeposits()

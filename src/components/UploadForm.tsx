@@ -1,10 +1,11 @@
 import React, { useState, ReactElement } from 'react';
 
 interface Props {
+  inProgress: boolean
   onSubmit: (file: File) => void;
 }
 
-export default function UploadForm({ onSubmit }: Props): ReactElement {
+export default function UploadForm({ inProgress, onSubmit }: Props): ReactElement {
   const [file, setFile] = useState<File>();
   return (
     <form>
@@ -13,7 +14,7 @@ export default function UploadForm({ onSubmit }: Props): ReactElement {
           if (event.target.files)
             setFile(event.target.files[0]);
         }}></input>
-        <button type="button" name="upload" onClick={(e) => {
+        <button type="button" name="upload" className={inProgress==true ? "loading" : ""} onClick={(e) => {
           e.preventDefault();
           if (file) onSubmit(file);
           setFile(undefined);
