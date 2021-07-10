@@ -14,7 +14,7 @@ export default function UploadForm({ inProgress, onSubmit }: Props): ReactElemen
           if (event.target.files)
             setFile(event.target.files[0]);
         }}></input>
-        <button type="button" name="upload" className={inProgress==true ? "loading" : ""} onClick={(e) => {
+        <button type="button" name="upload" className={inProgress===true ? "loading" : ""} onClick={(e) => {
           e.preventDefault();
           if (file) onSubmit(file);
           setFile(undefined);
