@@ -1,8 +1,8 @@
-# ETH Storage Basic Demo
+# Basic Storage Demos
 
-Sign in with Ethereum and start storing data on [Filecoin](https://filecoin.io) via Textile's [`@textile/eth-storage`](https://github.com/textileio/storage-js) SDK!
+Sign in with Ethereum or NEAR to start storing data on [Filecoin](https://filecoin.io) via Textile's [`@textile/eth-storage`](https://github.com/textileio/storage-js) SDK!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It provides a minimal demo/example for integrating `@textile/eth-storage` into a React-based app. No experience with smart contracts or blockchain required.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It provides a minimal demo/example for integrating `@textile/eth-storage` and/or `@textile/near-storage` into a React-based app. No experience with smart contracts or blockchain required.
 
 ## Available Scripts
 
