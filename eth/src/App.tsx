@@ -3,29 +3,25 @@ import { useState, ReactElement, useEffect } from 'react';
 import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
-import { Status, API, Request, requestSignIn } from "@textile/near-storage"
-import { WalletConnection } from 'near-api-js';
+import { Signer } from "ethers"
+import { Status, CoreAPI, Request } from "@textile/eth-storage"
 
 interface Props {
-  api: API
-  currentUser?: {
-    accountId: string
-  },
-  walletConnection: WalletConnection
+  api: CoreAPI
+  wallet: Signer
+  address: string
 }
 
-const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
+const App = ({ wallet, api, address }: Props): ReactElement => {
   const [uploads, setUploads] = useState<Array<Request>>([]);
   const [uploading, setUploading] = useState<boolean>(false);
   const [deposit, setDeposit] = useState<boolean>(false);
 
   useEffect(() => {
-    if (currentUser) {
+    if (wallet) {
       api.hasDeposit().then(setDeposit)
     }
-  }, [currentUser, api])
-
-  const accountId = currentUser && currentUser.accountId
+  }, [wallet, api])
 
   const onUpload = (file: File) => {
     setUploading(true)
@@ -59,28 +55,15 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
       .catch((err: Error) => alert(err.message));
   };
 
-  const signIn = () => {
-    requestSignIn(walletConnection, {});
-  };
-
-  const signOut = () => {
-    walletConnection.signOut();
-    window.location.replace(window.location.origin + window.location.pathname);
-  };
-
   return (
     <main>
       <header>
-        <h1>Textile Near Storage Demo</h1>
-        {accountId
-          ? <button onClick={signOut}>Log out</button>
-          : <button onClick={signIn}>Log in</button>
-        }
+        <h1>Textile Ξthereum Storage Demo</h1>
       </header>
       <p>
-        {deposit ? "You got Ⓝ in here!" : `Deposit some funds, ${accountId}!`}
+        {deposit ? "You got Ξ in here!" : `Deposit some funds, ${address}!`}
       </p>
-      {accountId
+      {address
         ? (<div>
           <Form onSubmit={onSubmit} />
           {deposit ? <Upload onSubmit={onUpload} inProgress={uploading} /> : null}
