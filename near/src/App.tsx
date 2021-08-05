@@ -8,24 +8,21 @@ import { WalletConnection } from 'near-api-js';
 
 interface Props {
   api: API
-  currentUser?: {
-    accountId: string
-  },
-  walletConnection: WalletConnection
+  wallet: WalletConnection
 }
 
-const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
+const App = ({ wallet, api }: Props): ReactElement => {
   const [uploads, setUploads] = useState<Array<Request>>([]);
   const [uploading, setUploading] = useState<boolean>(false);
   const [deposit, setDeposit] = useState<boolean>(false);
 
   useEffect(() => {
-    if (currentUser) {
+    if (wallet.isSignedIn()) {
       api.hasDeposit().then(setDeposit)
     }
-  }, [currentUser, api])
+  }, [wallet, api])
 
-  const accountId = currentUser && currentUser.accountId
+  const accountId = wallet.getAccountId()
 
   const onUpload = (file: File) => {
     setUploading(true)
@@ -60,11 +57,11 @@ const App = ({ walletConnection, api, currentUser }: Props): ReactElement => {
   };
 
   const signIn = () => {
-    requestSignIn(walletConnection, {});
+    requestSignIn(wallet, {});
   };
 
   const signOut = () => {
-    walletConnection.signOut();
+    wallet.signOut();
     window.location.replace(window.location.origin + window.location.pathname);
   };
 

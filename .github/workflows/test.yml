@@ -14,6 +14,7 @@ jobs:
 
       - name: Cache 📦
         uses: actions/cache@v1
+        working-directory: ./near
         with:
           path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -42,6 +43,7 @@ jobs:
 
       - name: Cache 📦
         uses: actions/cache@v1
+        working-directory: ./eth
         with:
           path: ~/.npm # npm cache files are stored in `~/.npm` on Linux/macOS
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
@@ -56,7 +58,7 @@ jobs:
           node-version: 12
 
       - name: Install and Build 🔧
-        working-directory: ./near
+        working-directory: ./eth
         run: |
           npm install
           npm run build
