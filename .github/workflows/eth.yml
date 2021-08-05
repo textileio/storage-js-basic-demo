@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Build ETH Demo
 on:
   push:
     branches:
@@ -9,6 +9,7 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
+        working-directory: ./eth
         with:
           persist-credentials: false
 
@@ -31,10 +32,3 @@ jobs:
         run: |
           npm install
           npm run build
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.7.1
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: build
