@@ -9,7 +9,6 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-        working-directory: ./eth
         with:
           persist-credentials: false
 
@@ -29,6 +28,7 @@ jobs:
           node-version: 12
 
       - name: Install and Build 🔧
+        working-directory: ./near
         run: |
           npm install
           npm run build
