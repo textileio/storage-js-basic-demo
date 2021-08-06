@@ -28,7 +28,7 @@ jobs:
           node-version: 12
 
       - name: Install and Build 🔧
-        working-directory: ./near
+        working-directory: ./eth
         run: |
           npm install
           npm run build
