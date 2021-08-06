@@ -27,15 +27,27 @@ jobs:
         with:
           node-version: 12
 
-      - name: Install and Build 🔧
+      - name: NEAR Install and Build 🔧
         working-directory: ./near
         run: |
           npm install
           npm run build
+
+      - name: ETH Install and Build 🔧
+        working-directory: ./eth
+        run: |
+          npm install
+          npm run build
+
+      - name: Reorg
+        run: |
+          mkdir build
+          mv near/build build/near
+          mv eth/build build/eth
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: near/build
+          FOLDER: build
