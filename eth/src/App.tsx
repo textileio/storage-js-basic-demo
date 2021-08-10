@@ -69,9 +69,9 @@ const App = ({ wallet, api, address }: Props): ReactElement => {
           {deposit ? <Upload onSubmit={onUpload} inProgress={uploading} /> : null}
           <button type="button" name="release" onClick={(e) => {
             e.preventDefault();
-            api.releaseDeposits()
+            api.releaseDeposit()
               .then(() => {
-                alert("check your wallet in case of released funds")
+                alert("if your session is over, your funds should be returned");
                 // Auto-refresh the page
                 window.location.reload();
               })

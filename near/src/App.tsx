@@ -85,7 +85,7 @@ const App = ({ wallet, api }: Props): ReactElement => {
             e.preventDefault();
             api.releaseDeposits()
               .then(() => {
-                alert("check your wallet in case of released funds")
+                alert("if your session is over, your funds should be returned");
                 // Auto-refresh the page
                 window.location.reload();
               })

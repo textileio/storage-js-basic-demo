@@ -14,6 +14,9 @@ declare global {
 }
 
 async function initEthConnection() {
+  if (!window.ethereum) {
+    throw new Error("No web3 provider found. Please install metamask browser extension.")
+  }
   await (window.ethereum as any).enable();
   const provider = new providers.Web3Provider(window.ethereum);
   const wallet = provider.getSigner();
@@ -32,6 +35,9 @@ initEthConnection()
       />,
       document.getElementById('root')
     );
+  })
+  .catch((err) => {
+    alert(err.message)
   });
 
 
