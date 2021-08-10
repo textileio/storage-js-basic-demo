@@ -3,23 +3,49 @@ import { useState, ReactElement, useEffect } from 'react';
 import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
-import { Signer } from "ethers"
+import { providers, Signer } from "ethers"
 import { Status, CoreAPI, Request } from "@textile/eth-storage"
 
 interface Props {
+  network: providers.Network
   api: CoreAPI
   wallet: Signer
   address: string
 }
 
-const App = ({ wallet, api, address }: Props): ReactElement => {
+const App = ({ network, wallet, api, address }: Props): ReactElement => {
   const [uploads, setUploads] = useState<Array<Request>>([]);
   const [uploading, setUploading] = useState<boolean>(false);
   const [deposit, setDeposit] = useState<boolean>(false);
+  const [netIdent, setIdent] = useState<string>("");
+  const [netToken, setToken] = useState<string>("");
+  const [conn, setConn] = useState<string>("");
 
   useEffect(() => {
     if (wallet) {
       api.hasDeposit().then(setDeposit)
+    }
+    if (network && network.name) {
+      switch(network.name) {
+        case "matic":
+          setIdent("Polygon")
+          setToken("MATIC")
+          setConn("Polygon Mainnet")
+          break;
+        case "maticmum":
+          setIdent("Polygon")
+          setToken("MATIC")
+          setConn("Polygon Mumbai")
+          break;
+        case "rinkeby":
+          setIdent("Ethereum")
+          setToken("Ξ")
+          setConn("Ethereum Rinkeby")
+          break;
+        default:
+          setIdent("")
+          setToken("")
+      }
     }
   }, [wallet, api])
 
@@ -58,10 +84,10 @@ const App = ({ wallet, api, address }: Props): ReactElement => {
   return (
     <main>
       <header>
-        <h1>Textile Ξthereum Storage Demo</h1>
+        <h1>Textile {`${netIdent}`} Storage Demo</h1>
       </header>
       <p>
-        {deposit ? "You got Ξ in here!" : `Deposit some funds, ${address}!`}
+        {deposit ? `You got ${netToken} in here!` : `Deposit some funds, ${address}!`}
       </p>
       {address
         ? (<div>
@@ -99,6 +125,12 @@ const App = ({ wallet, api, address }: Props): ReactElement => {
               <br />
             </p>
           })}
+          <br/>
+          <p>
+            <i>
+              {`You are connected on ${conn}. Try this demo on Ethereum Rinkeby, Polygon Mumbai, or Polygon Mainnet.`}
+            </i>
+          </p>
         </div>
         ) : <Welcome />
       }

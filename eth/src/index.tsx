@@ -13,6 +13,9 @@ declare global {
   }
 }
 
+const SUPPORTED_NETWORKS = ['matic', 'maticmum', 'rinkeby']
+const SUPPORTED_NETWORK_LONG = 'Matic Mainnet, Matic Mumbai, and Ethereum Rinkeby'
+
 async function initEthConnection() {
   if (!window.ethereum) {
     throw new Error("No web3 provider found. Please install metamask browser extension.")
@@ -21,10 +24,15 @@ async function initEthConnection() {
   const provider = new providers.Web3Provider(window.ethereum);
   const wallet = provider.getSigner();
 
+  const network = await provider.getNetwork();
+
+  if (SUPPORTED_NETWORKS.indexOf(network.name) === -1) {
+    throw new Error(`Only ${SUPPORTED_NETWORK_LONG} networks are currently supported. Switch your wallet connection and refresh the webpage.`)
+  }
   const api = await init(wallet);
   const address = await wallet.getAddress();
 
-  return { api, wallet, address }
+  return { network, api, wallet, address }
 }
 
 initEthConnection()
