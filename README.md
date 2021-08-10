@@ -1,6 +1,6 @@
 # Basic Storage Demos
 
-Sign in with Ethereum or NEAR to start storing data on [Filecoin](https://filecoin.io) via Textile's [`@textile/eth-storage`](https://github.com/textileio/storage-js) SDK!
+Sign in with Ethereum or NEAR to start storing data on [Filecoin](https://filecoin.io) via Textile's [`@textile/eth-storage`](https://github.com/textileio/storage-js) SDK! View the [live demos here](https://textileio.github.io/storage-js-basic-demo/).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It provides a minimal demo/example for integrating `@textile/eth-storage` and/or `@textile/near-storage` into a React-based app. No experience with smart contracts or blockchain required.
 
@@ -42,6 +42,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
 ## Learn More
+
+View the [live demos here](https://textileio.github.io/storage-js-basic-demo/).
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
