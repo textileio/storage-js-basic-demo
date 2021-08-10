@@ -47,7 +47,7 @@ const App = ({ network, wallet, api, address }: Props): ReactElement => {
           setToken("")
       }
     }
-  }, [wallet, api])
+  }, [wallet, api, network])
 
   const onUpload = (file: File) => {
     setUploading(true)
