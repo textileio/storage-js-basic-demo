@@ -3,7 +3,7 @@ import { useState, ReactElement, useEffect } from 'react';
 import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
-import { Status, API, Request, requestSignIn } from "@textile/near-storage"
+import { API, Request, requestSignIn } from "@textile/near-storage"
 import { WalletConnection } from 'near-api-js';
 
 interface Props {
@@ -42,7 +42,7 @@ const App = ({ wallet, api }: Props): ReactElement => {
     if (id) {
       api.status(id)
         .then(({ request }) => {
-          alert(`Filecoin deal status: "${Status[request.status_code]}"!`)
+          alert(`Filecoin deal status: "${request.status_code}"!`)
         })
         .catch((err: Error) => alert(err.message));
     } else {

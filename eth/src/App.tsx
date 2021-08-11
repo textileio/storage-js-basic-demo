@@ -4,7 +4,7 @@ import Form from './components/LockForm';
 import Welcome from './components/Welcome';
 import Upload from "./components/UploadForm";
 import { providers, Signer } from "ethers"
-import { Status, CoreAPI, Request } from "@textile/eth-storage"
+import { CoreAPI, Request } from "@textile/eth-storage"
 
 interface Props {
   network: providers.Network
@@ -67,7 +67,7 @@ const App = ({ network, wallet, api, address }: Props): ReactElement => {
     if (id) {
       api.status(id)
         .then(({ request }) => {
-          alert(`Filecoin deal status: "${Status[request.status_code]}"!`)
+          alert(`Filecoin deal status: "${request.status_code}"!`);
         })
         .catch((err: Error) => alert(err.message));
     } else {
