@@ -3,12 +3,12 @@ import { useState, ReactElement, useEffect } from "react";
 import Form from "./components/LockForm";
 import Welcome from "./components/Welcome";
 import Upload from "./components/UploadForm";
-import { providers, Signer } from "ethers";
+import { providers, Signer, BigNumber } from "ethers";
 import { CoreAPI, Request } from "@textile/eth-storage";
 
 interface Props {
   network: providers.Network;
-  api: CoreAPI;
+  api: CoreAPI<BigNumber>;
   wallet: Signer;
   address: string;
 }
