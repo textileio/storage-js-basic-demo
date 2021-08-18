@@ -1,18 +1,18 @@
 /// <reference lib="dom" />
 
-import App from "./App"
+import App from "./App";
 import ReactDOM from "react-dom";
 import getConfig from "./config.js";
-import { connect, keyStores, WalletConnection } from 'near-api-js';
-import { init as initNear } from "@textile/near-storage";
-import reportWebVitals from "./reportWebVitals"
+import { connect, keyStores, WalletConnection } from "near-api-js";
+import { init, requestSignIn } from "@textile/near-storage";
+import reportWebVitals from "./reportWebVitals";
 import "./index.scss";
 
 // Seems like a strange hack
-const ENV = process.env as unknown as Record<string, string>;
+const ENV = (process.env as unknown) as Record<string, string>;
 
 async function initConnection() {
-  const nearConfig = getConfig(ENV.NODE_ENV as any || 'testnet');
+  const nearConfig = getConfig((ENV.NODE_ENV as any) || "testnet");
 
   // Initializing connection to the NEAR TestNet
   const near = await connect({
@@ -25,22 +25,22 @@ async function initConnection() {
   // Needed to access wallet
   const wallet = new WalletConnection(near, null);
 
-  const api = await initNear(wallet.account(), { contractId: 'filecoin-bridge.testnet' });
+  await requestSignIn(wallet);
 
-  return { api, wallet }
-}
-
-initConnection()
-  .then(({ api, wallet }) => {
-    ReactDOM.render(
-      <App
-        api={api as any}
-        wallet={wallet}
-      />,
-      document.getElementById('root')
-    );
+  const api = await init(wallet.account(), {
+    provider: "bridge-provider.testnet",
+    registry: "bridge-registry.testnet"
   });
 
+  return { api, wallet };
+}
+
+initConnection().then(({ api, wallet }) => {
+  ReactDOM.render(
+    <App api={api as any} wallet={wallet} />,
+    document.getElementById("root")
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
