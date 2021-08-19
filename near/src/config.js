@@ -1,6 +1,6 @@
 // Seems like a strange hack
 const ENV = process.env
-const CONTRACT_NAME = ENV.CONTRACT_NAME || 'filecoin-bridge.testnet';
+const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.testnet';
 
 /**
  * 
