@@ -1,5 +1,6 @@
 // Seems like a strange hack
 const ENV = process.env
+// Normally you'd use your own app here
 const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.near';
 
 /**
@@ -9,7 +10,10 @@ const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.near';
  */
 function getConfig(env) {
   switch(env) {
+    // This is a demo, so production and development are set to mainnet.
+    // You can move development to testnet if that is applicable.
     case 'development':
+    case 'production':
     case 'mainnet':
       return {
         networkId: 'mainnet',
@@ -18,9 +22,6 @@ function getConfig(env) {
         walletUrl: 'https://wallet.near.org',
         helperUrl: 'https://helper.mainnet.near.org'
       };
-    // This is an example app so production is set to testnet.
-    // You can move production to mainnet if that is applicable.
-    case 'production':
     case 'testnet':
       return {
         networkId: 'testnet',

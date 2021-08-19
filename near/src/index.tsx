@@ -25,6 +25,7 @@ async function initConnection() {
   // Needed to access wallet
   const wallet = new WalletConnection(near, null);
 
+  // Normally you'd use your own app account id here if this is a NEAR dApp
   await requestSignIn(wallet, { contractId: "storage-bridge-validator.near" });
 
   const api = await init(wallet.account(), {
