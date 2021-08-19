@@ -45,6 +45,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 View the [live demos here](https://textileio.github.io/storage-js-basic-demo/).
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To run the NEAR dApp on mainnet yourself (locally), you'd likely want to make the [following changes](https://github.com/textileio/storage-js-basic-demo/compare/near-mainnet).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started). To learn React, check out the [React documentation](https://reactjs.org/).
