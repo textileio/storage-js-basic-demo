@@ -25,11 +25,11 @@ async function initConnection() {
   // Needed to access wallet
   const wallet = new WalletConnection(near, null);
 
-  await requestSignIn(wallet);
+  await requestSignIn(wallet, { contractId: "storage-bridge-validator.near" });
 
   const api = await init(wallet.account(), {
-    provider: "storage-bridge-validator.testnet",
-    registry: "storage-bridge-registry.testnet"
+    provider: "storage-bridge-validator.near",
+    registry: "storage-bridge-registry.near"
   });
 
   return { api, wallet };

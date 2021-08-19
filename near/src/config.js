@@ -1,6 +1,6 @@
 // Seems like a strange hack
 const ENV = process.env
-const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.testnet';
+const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.near';
 
 /**
  * 
@@ -9,6 +9,7 @@ const CONTRACT_NAME = ENV.CONTRACT_NAME || 'storage-bridge-validator.testnet';
  */
 function getConfig(env) {
   switch(env) {
+    case 'development':
     case 'mainnet':
       return {
         networkId: 'mainnet',
@@ -20,7 +21,6 @@ function getConfig(env) {
     // This is an example app so production is set to testnet.
     // You can move production to mainnet if that is applicable.
     case 'production':
-    case 'development':
     case 'testnet':
       return {
         networkId: 'testnet',
