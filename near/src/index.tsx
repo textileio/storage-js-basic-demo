@@ -28,8 +28,8 @@ async function initConnection() {
   await requestSignIn(wallet);
 
   const api = await init(wallet.account(), {
-    provider: "bridge-provider.testnet",
-    registry: "bridge-registry.testnet"
+    provider: "storage-bridge-validator.testnet",
+    registry: "storage-bridge-registry.testnet"
   });
 
   return { api, wallet };
